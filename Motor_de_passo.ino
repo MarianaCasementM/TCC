@@ -14,9 +14,10 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 //
-//More modifications last made on 14/11/2020 by Mariana Casement.
+//More modifications last made on 16/11/2020 by Mariana Casement.
 //*/  
 
+//global variables
 
 int Pin1 = 8; 
 int Pin2 = 9; 
@@ -26,11 +27,6 @@ int _step = 0;
 boolean dir = true;// false=clockwise, true=counter clockwise
 int count = 0;
 float result = 0;
-
-// tentando salvar dados em .csv (que se tornou inútil ao utilizar o programa em .py
-//String dataLabel1 = "count";
-//String dataLabel2 = "Intensidade";
-//bool label = false; //para o arquivo csv ter labels: true
 
 void setup() { 
   pinMode(Pin1, OUTPUT);  
@@ -42,32 +38,29 @@ void setup() {
   pinMode(A0, INPUT);
 } 
 
-//function to print data at serial port.
+
+//function to print data at serial port. 
+
 void dado(int count) {
   int mean = 0;
-  int med = count % 10; //resto da divisão: will be zero when count is a multiple of 10
-  //Serial.print("medida #"); 
-  //Serial.println(count); //verificar o valor de count
+  int med = count % 10; //[POR} resto da divisão: [ENG] will be zero when count is a multiple of 10
   if(med==0){
-    //Serial.print("mean:");
-    //Serial.println(mean); //verificar o valor de mean
-    while(mean<=10){ //tirando a média de dez valores com motor parado
+    while(mean<=10){ //[POR] tirando a média de dez valores com motor parado //[ENG] calculates mean of ten bit of data taken with the motor stopped
       result = result + float(analogRead(A0));
-      //Serial.println(result);
-      mean++; //mean=mean+1
+      mean++;
     }
-    //Serial.print("res:");
-    Serial.println(result/10.); //imprime dados de fato
-    result = 0; //reinicializa valor
-    return; //volta para o void loop()
+    Serial.println(result/10.); //prints mean at the serial port
+    result = 0; //resets variable
+    return;
   }else{
     return;
   }
 }
+
  
 void loop() { 
 
-  switch(_step){ 
+  switch(_step){ //each half step of the motor
     case 0: 
       digitalWrite(Pin1, LOW);  
       digitalWrite(Pin2, LOW); 
@@ -124,40 +117,22 @@ void loop() {
     break;  
   } 
   
-  if(dir){ 
+  if(dir){ //continues loop in chosen direction
     _step++; 
   }else{ 
     _step--;
   } 
   
-  if(_step>7){ 
+  if(_step>7){ //continues loop in chosen direction
     _step=0; 
     count++; 
-    dado(count);
+    dado(count); //collects data if count a multiple of 10, ie, every 80 steps
   } 
-  if(_step<0){ 
+  if(_step<0){ //continues loop in chosen direction
     _step=7; 
     count++;
     dado(count);
   }  
-  delayMicroseconds(700); //min 562 or not?got it to 560... 
-  
-  //Serial.println(count);
-
-  //collecting data from photodiode (tentativa de salvar em .csv)
-
-  //print out labels of each column
-    //while(label){ //runs once
-        //Serial.print(dataLabel1);
-        //Serial.print(",");
-        //Serial.println(dataLabel2);
-        //label=false;
-    //}
-  //if (count<= 47000) { //queremos medir 46080 passos
-  //}
-    //result = analogRead(A0); //leitura da medição
-    //Serial.print(count); //se quiser mais dados num arquivo .csv
-    //Serial.print(",");
-    //Serial.println(result);
+  delayMicroseconds(700); //delay between steps: establishes the speed of the motor. Doesn't work for values lower that 560.
   
 }
