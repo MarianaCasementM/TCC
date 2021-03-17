@@ -19,22 +19,29 @@
 
 //global variables
 
+//Pins that control motor
 byte Pin1 = 8; 
 byte Pin2 = 9; 
 byte Pin3 = 10; 
 byte Pin4 = 11; 
-byte _step = 0; 
-byte hor0anti1 = 0;// 0=clockwise, 1=counter clockwise
-int vel = 570; //minimum 570
-int max_step_val = 5000000; //maximum number of steps so that micrometer does not get to end of course (do not know yet, might vary)
 
-byte pare = 0; //se for diferente de 0, para o motor
+byte _step = 0; // half-step counter
 
-int total_dados = 50000; //quantos dados a tomar
+byte hor0anti1 = 0;// direction delimiter: 0=clockwise, 1=counter clockwise
+int vel = 570; // delay between measurements, minimum 570 so there isn't a problem
+int max_step_val = 5000000; //maximum number of steps so that micrometer does not get to end of course (if started at beginning) (do not know yet, might vary)
+
+byte pare = 0; //if it isn't 0, the motor will stop
+
 byte dist_dados = 1; //quantos _step entre cada registro de um dado
 byte media = 10; //quantas medidas tomar antes de tirar média a cada dado
-int num_dados = 0; 
-int count = 0;
+int count = 0; //numero de steps andados
+
+int num_dados = 0; //numero de dados registrados durante a varredura
+int total_dados = 50000; //quantos dados a tomar a cada varredura
+
+int num_varr = 0; //quantas varreduras foram realizadas
+int total_varr = 1; //quantas varreduraas queremos realizar no total
 
 
 
