@@ -1,14 +1,16 @@
 void uma_varr(){
 
+  num_dados = 0;
+
   for(num_dados >= total_dados){
     //Se valor de pare for diferente de 0, count maior que limite ou  programa para de rodar
     if(pare != 0 || count > max_step_val){
-      delay(5);
       return;
     }
 
     //entra com o número do _step, coloca motor nas fases correspondentes
     andar(); 
+    count++; //number of half-steps given
 
     //entra com alguns valores, pega um valor do sinal, escreve na porta serial e retorna com novo num_dados
     num_dados = dado();
@@ -30,8 +32,6 @@ void uma_varr(){
     if(_step<0){ 
       _step=7; 
     }  
-
-    count++; //number of half-steps given
 
     //delay to establish speed of motor
     if (vel < 565){
