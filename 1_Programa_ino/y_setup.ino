@@ -3,8 +3,8 @@ void setup() {
   pinMode(Pin2, OUTPUT);  
   pinMode(Pin3, OUTPUT);  
   pinMode(Pin4, OUTPUT);
-  Serial.begin(115200);
+  Serial.begin(9600);
   pinMode(A0, INPUT);
   initializeLVP();
-  Serial.print("Setup ok");
+  Serial.println("Setup ok");
 } 
