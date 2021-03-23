@@ -10,9 +10,10 @@ int dado() {
     }
     Serial.println(result/media); //imprime dados de fato
     num_dados++;
-    return num_dados; //volta com novo valor de num_dados: a quantidade de dados registrados
+    return;
+    
   }else{
-    return num_dados;
+    return;
   }
   
 }
