@@ -58,4 +58,22 @@ void andar() {
       digitalWrite(Pin4, LOW); 
     break;  
   } 
+
+  //aumenta ou diminui o valor de _step para que passe para a próxima posição, que vai depender da direção estabelecida
+    if(dir == 1){ 
+      _step++; 
+    }else if(dir == 0) { 
+      _step--;
+    }else{
+      Serial.println("Por favor insira um valor valido: 0 ou 1.");
+      return;
+    }
+
+    //recomeça o valor de _step ao final de um ciclo
+    if(_step>7){ 
+      _step=0; 
+    } 
+    if(_step<0){ 
+      _step=7; 
+    }  
 }
