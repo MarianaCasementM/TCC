@@ -25,23 +25,23 @@ byte Pin2 = 9;
 byte Pin3 = 10; 
 byte Pin4 = 11; 
 
-byte _step = 0; // half-step counter
+int _step = 0; // half-step counter
 
-byte hor0anti1 = 0;// direction delimiter: 0=clockwise, 1=counter clockwise
-int vel = 570; // delay between measurements, minimum 570 so there isn't a problem
-int max_step_val = 5000000; //maximum number of steps so that micrometer does not get to end of course (if started at beginning) (do not know yet, might vary)
+byte dir = 0;// direction delimiter: 0=clockwise, 1=counter clockwise
+int vel = 5700; // delay between measurements, minimum 570 so there isn't a problem
+long max_step_val = 500000L; //maximum number of steps so that micrometer does not get to end of course (if started at beginning) (do not know yet, might vary)
 
-byte pare = 0; //if it isn't 0, the motor will stop
+//byte pare = 0; //if it isn't 0, the motor will stop
 
-byte dist_dados = 1; //quantos _step entre cada registro de um dado
+byte dist_dados = 10; //quantos _step entre cada registro de um dado
 byte media = 10; //quantas medidas tomar antes de tirar média a cada dado
 int count = 0; //numero de steps andados
 
 int num_dados = 0; //numero de dados registrados durante a varredura
-int total_dados = 50000; //quantos dados a tomar a cada varredura
+long total_dados = 200; //quantos dados a tomar a cada varredura
 
 int num_varr = 0; //quantas varreduras foram realizadas
-int total_varr = 1; //quantas varreduraas queremos realizar no total
+int total_varr = 5; //quantas varreduraas queremos realizar no total
 
 
 
@@ -73,4 +73,3 @@ int total_varr = 1; //quantas varreduraas queremos realizar no total
     //Serial.print(",");
     //Serial.println(result);
   
-}
