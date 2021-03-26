@@ -1,5 +1,5 @@
 void loop() { 
 
-  delayMicroseconds(570);
+  delayMicroseconds(500);
 
 }
