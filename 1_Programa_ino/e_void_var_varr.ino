@@ -16,9 +16,8 @@ void var_varr(){
       dir = 1;
     }
 
-    for(byte i=1; i<=10; i++){
-      Serial.println(num_varr);
-    }
+    Serial.print("varredura finalizada:");
+    Serial.println(num_varr);
     
   }
  
