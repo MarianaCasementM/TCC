@@ -14,7 +14,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 //
-//More modifications last made on 21/02/2021 by Mariana Casement.
+//More modifications last made on 26/03/2021 by Mariana Casement.
 //*/  
 
 //global variables
@@ -28,8 +28,8 @@ byte Pin4 = 11;
 int _step = 0; // half-step counter
 
 byte dir = 0;// direction delimiter: 0=clockwise, 1=counter clockwise
-int vel = 5700; // delay between measurements, minimum 570 so there isn't a problem
-long max_step_val = 500000L; //maximum number of steps so that micrometer does not get to end of course (if started at beginning) (do not know yet, might vary)
+int vel = 570; // delay between measurements, minimum 570 so there isn't a problem
+const long max_step_val = 500000L; //maximum number of steps so that micrometer does not get to end of course (if started at beginning) (do not know yet, might vary)
 
 //byte pare = 0; //if it isn't 0, the motor will stop
 
